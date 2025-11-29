@@ -12,31 +12,31 @@ Our payment system provides secure and efficient transaction processing.
 ## Features
 - 💳 Multiple Payment Methods
 
-Credit/Debit Cards (Visa, MasterCard, American Express)
-Digital Wallets (PayPal, Apple Pay, Google Pay)
-Bank Transfers
-Cryptocurrency
+- Credit/Debit Cards (Visa, MasterCard, American Express)
+- Digital Wallets (PayPal, Apple Pay, Google Pay)
+- Bank Transfers
+- Cryptocurrency
 
 ## - 🔒 Secure Processing |  SSL encryption
 
-PCI DSS Compliant
-End-to-end encryption
-Tokenization for sensitive data
-3D Secure authentication
+- PCI DSS Compliant
+- End-to-end encryption
+- Tokenization for sensitive data
+- 3D Secure authentication
 
  ## - 📊 Real-time analytics | 🌐 Payment Providers
   
-Stripe Integration
-PayPal Integration
-Square Integration
-Custom gateway support
+- Stripe Integration
+- PayPal Integration
+- Square Integration
+- Custom gateway support
 
 ## Transaction Management
 
-Real-time payment processing
-Refund handling
-Subscription management
-Invoice generation
+- Real-time payment processing
+- Refund handling
+- Subscription management
+- Invoice generation
 
 ## Tips:
 1. Use **PNG** for diagrams and screenshots
