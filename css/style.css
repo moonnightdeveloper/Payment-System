@@ -1,0 +1,968 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Statistics Section */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #667eea;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Payment Container */
+.payment-container {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    margin-bottom: 30px;
+}
+
+.payment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-row {
+    /* display: flex; */
+    gap: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+input, select {
+    padding: 12px 15px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.expiry-row {
+    display: flex;
+    gap: 10px;
+}
+
+.expiry-row select {
+    flex: 1;
+}
+
+.card-icons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.card-icon {
+    font-size: 1.2rem;
+}
+
+.card-type {
+    font-weight: bold;
+    color: #667eea;
+    font-size: 0.8rem;
+}
+
+.pay-button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    height: 50px;
+}
+
+.pay-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.pay-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.spinner {
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #667eea;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.security-notice {
+    text-align: center;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.security-notice p:last-child {
+    font-size: 0.8rem;
+    margin-top: 5px;
+    color: #888;
+}
+
+/* Response Messages */
+.response-message {
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.response-message.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.response-message.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Notification System */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.3s ease;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.notification.success {
+    background: #28a745;
+}
+
+.notification.error {
+    background: #dc3545;
+}
+
+/* Transaction History */
+.transaction-history {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.history-header h3 {
+    color: #333;
+    margin: 0;
+}
+
+.refresh-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.3s ease;
+}
+
+.refresh-btn:hover {
+    background: #5a6fd8;
+}
+
+.transaction-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.transaction-item {
+    padding: 12px;
+    border: 1px solid #e1e5e9;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.transaction-item > div:first-child {
+    flex: 1;
+}
+
+.transaction-id {
+    font-weight: bold;
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.transaction-date {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 4px;
+}
+
+.transaction-amount {
+    font-weight: bold;
+    color: #333;
+    text-align: right;
+    margin-bottom: 4px;
+}
+
+.transaction-status {
+    font-weight: bold;
+    text-align: right;
+}
+
+.transaction-status.success {
+    color: #28a745;
+}
+
+.transaction-status.failed {
+    color: #dc3545;
+}
+
+.transaction-status.pending {
+    color: #ffc107;
+}
+
+.no-transactions {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-style: italic;
+}
+
+/* System Information */
+.system-info {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.system-info h4 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.status-indicators {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-dot.online {
+    background: #28a745;
+    animation: pulse 2s infinite;
+}
+
+.status-dot.offline {
+    background: #dc3545;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+/* Form Validation Styles */
+input:invalid {
+    border-color: #dc3545;
+}
+
+input:valid {
+    border-color: #28a745;
+}
+
+.form-group .error-message {
+    color: #dc3545;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    display: none;
+}
+
+.form-group.error .error-message {
+    display: block;
+}
+
+.form-group.error input,
+.form-group.error select {
+    border-color: #dc3545;
+}
+
+/* Loading States */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Scrollbar Styling */
+.transaction-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.transaction-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.transaction-list::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.transaction-list::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .container {
+        max-width: 100%;
+        padding: 10px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .payment-container {
+        padding: 20px;
+    }
+    
+    .stats-container {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    
+    .stat-card {
+        padding: 15px;
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .history-header {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+    
+    .refresh-btn {
+        align-self: flex-end;
+    }
+    
+    .status-indicators {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .transaction-item {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .transaction-amount,
+    .transaction-status {
+        text-align: left;
+    }
+    
+    .notification {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        transform: translateY(-100%);
+    }
+    
+    .notification.show {
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 400px) {
+    .payment-container {
+        padding: 15px;
+    }
+    
+    .transaction-history {
+        padding: 15px;
+    }
+    
+    .system-info {
+        padding: 15px;
+    }
+    
+    input, select {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+    
+    .pay-button {
+        padding: 12px;
+        font-size: 16px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .payment-container,
+    .transaction-history,
+    .system-info {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+    
+    .pay-button,
+    .refresh-btn,
+    .notification {
+        display: none !important;
+    }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .payment-container,
+    .transaction-history,
+    .system-info,
+    .stat-card {
+        border: 2px solid #000;
+    }
+    
+    input, select {
+        border-width: 2px;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .spinner {
+        animation: none;
+    }
+    
+    .status-dot.online {
+        animation: none;
+    }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    .payment-container,
+    .transaction-history,
+    .system-info,
+    .stat-card {
+        background: #2d3748;
+        color: #e2e8f0;
+    }
+    
+    label {
+        color: #e2e8f0;
+    }
+    
+    input, select {
+        background: #4a5568;
+        border-color: #718096;
+        color: #e2e8f0;
+    }
+    
+    input:focus, select:focus {
+        border-color: #667eea;
+    }
+    
+    .security-notice {
+        background: #4a5568;
+        color: #cbd5e0;
+    }
+}
+/* QR Code Specific Styles */
+.qr-payment-section {
+    text-align: center;
+}
+
+.qr-options {
+    display: flex;
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 20px;
+    gap: 5px;
+}
+
+.qr-option-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    color: #666;
+}
+
+.qr-option-btn.active {
+    background: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+.qr-section {
+    display: none;
+}
+
+.qr-section.active {
+    display: block;
+}
+
+.qr-code-container {
+    margin-top: 30px;
+    padding: 25px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 15px;
+    border: none;
+    color: white;
+}
+
+.qr-code-wrapper {
+    display: inline-block;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    margin-bottom: 20px;
+}
+
+#qrCodeDisplay canvas {
+    border-radius: 10px;
+    border: 2px solid #e1e5e9;
+}
+
+.qr-code-info {
+    text-align: center;
+    color: white;
+}
+
+.qr-code-info h4 {
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.qr-code-info p {
+    margin-bottom: 8px;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.qr-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.action-btn.primary {
+    background: #28a745;
+    color: white;
+}
+
+.action-btn.secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.action-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Scanner Styles */
+.scanner-container {
+    text-align: center;
+}
+
+.qr-reader {
+    width: 100%;
+    max-width: 400px;
+    height: 400px;
+    margin: 0 auto 20px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #dee2e6;
+}
+
+.qr-reader video {
+    border-radius: 10px;
+}
+
+.scanner-controls {
+    margin-bottom: 20px;
+}
+
+.scanner-instructions {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border-left: 4px solid #667eea;
+}
+
+.scanner-instructions p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.scanner-result {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 15px;
+    margin-top: 20px;
+    border: 2px solid #28a745;
+    text-align: left;
+}
+
+.scanner-result h4 {
+    color: #28a745;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.scanned-detail {
+    padding: 12px;
+    margin-bottom: 10px;
+    background: white;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+    font-size: 0.95rem;
+}
+
+.scanned-detail strong {
+    color: #333;
+}
+
+/* Payment Method Tabs */
+.payment-method-tabs {
+    display: flex;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 6px;
+    margin-bottom: 25px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tab-button {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.tab-button.active {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.tab-button:hover:not(.active) {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Payment Tabs */
+.payment-tab {
+    display: none;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.payment-tab.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Loading states */
+.scanner-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #666;
+}
+
+.scanner-loading .spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+}
+
+/* Responsive Design for QR Features */
+@media (max-width: 768px) {
+    .payment-method-tabs {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .qr-options {
+        flex-direction: column;
+    }
+    
+    .qr-actions {
+        flex-direction: column;
+    }
+    
+    .action-btn {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    
+    .qr-code-wrapper {
+        padding: 15px;
+    }
+    
+    .qr-reader {
+        height: 300px;
+        max-width: 300px;
+    }
+    
+    .scanner-result {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .qr-reader {
+        height: 250px;
+        max-width: 250px;
+    }
+    
+    .qr-code-container {
+        padding: 20px;
+    }
+    
+    .tab-button {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Dark mode support for QR features */
+@media (prefers-color-scheme: dark) {
+    .qr-options {
+        background: #2d3748;
+    }
+    
+    .qr-option-btn {
+        color: #cbd5e0;
+    }
+    
+    .qr-option-btn.active {
+        background: #4a5568;
+        color: #e2e8f0;
+    }
+    
+    .scanner-instructions {
+        background: #2d3748;
+        color: #e2e8f0;
+    }
+    
+    .scanner-instructions p {
+        color: #cbd5e0;
+    }
+    
+    .scanner-result {
+        background: #2d3748;
+        color: #e2e8f0;
+    }
+    
+    .scanned-detail {
+        background: #4a5568;
+        color: #e2e8f0;
+    }
+    
+    .scanned-detail strong {
+        color: #e2e8f0;
+    }
+}
