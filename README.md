@@ -55,4 +55,35 @@ your-project/
 ├── docs/
 │   └── assets/
 └── src/
+```
+```bash
+app.post('/webhooks/stripe', express.raw({type: 'application/json'}), 
+  async (req, res) => {
+    const signature = req.headers['stripe-signature'];
+    
+    try {
+      const event = payment.verifyWebhook(req.body, signature);
+      
+      switch (event.type) {
+        case 'payment_intent.succeeded':
+          await handleSuccessfulPayment(event.data.object);
+          break;
+        case 'payment_intent.payment_failed':
+          await handleFailedPayment(event.data.object);
+          break;
+      }
+      
+      res.json({received: true});
+    } catch (err) {
+      res.status(400).send(`Webhook Error: ${err.message}`);
+    }
+  }
+);
+
+```
+## Methods
+- process(paymentData) - Process a payment
+- createSubscription(subscriptionData) - Create recurring subscription
+- refund(refundData) - Process refund
+- verifyWebhook(payload, signature) - Verify webhook signature
 
