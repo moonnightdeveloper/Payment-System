@@ -7,11 +7,11 @@ Our payment system provides secure and efficient transaction processing.
 
 ## Features
 - 💳 Multiple payment methods
-- 🔒 SSL encryption
-- 📊 Real-time analytics
+- 
+
 - 🔄 Recurring payments
 
-  ##Features
+## Features
 💳 Multiple Payment Methods
 
 Credit/Debit Cards (Visa, MasterCard, American Express)
@@ -22,7 +22,7 @@ Bank Transfers
 
 Cryptocurrency
 
-🔒 Secure Processing
+🔒 Secure Processing |  SSL encryption
 
 PCI DSS Compliant
 
@@ -32,8 +32,8 @@ Tokenization for sensitive data
 
 3D Secure authentication
 
-🌐 Payment Providers
-
+- 📊 Real-time analytics | 🌐 Payment Providers
+  
 Stripe Integration
 
 PayPal Integration
@@ -42,7 +42,7 @@ Square Integration
 
 Custom gateway support
 
-📊 Transaction Management
+## Transaction Management
 
 Real-time payment processing
 
