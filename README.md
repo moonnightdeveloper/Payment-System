@@ -11,6 +11,47 @@ Our payment system provides secure and efficient transaction processing.
 - 📊 Real-time analytics
 - 🔄 Recurring payments
 
+  ##Features
+💳 Multiple Payment Methods
+
+Credit/Debit Cards (Visa, MasterCard, American Express)
+
+Digital Wallets (PayPal, Apple Pay, Google Pay)
+
+Bank Transfers
+
+Cryptocurrency
+
+🔒 Secure Processing
+
+PCI DSS Compliant
+
+End-to-end encryption
+
+Tokenization for sensitive data
+
+3D Secure authentication
+
+🌐 Payment Providers
+
+Stripe Integration
+
+PayPal Integration
+
+Square Integration
+
+Custom gateway support
+
+📊 Transaction Management
+
+Real-time payment processing
+
+Refund handling
+
+Subscription management
+
+Invoice generation
+
 ## Tips:
 1. Use **PNG** for diagrams and screenshots
 2. Use **SVG** for scalable graphics
