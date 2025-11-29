@@ -1,6 +1,6 @@
 # Payment System
 
-![Payment System Architecture](./images/payment-system-diagram.png)
+![Payment System Architecture](./images/payment.jpg)
 
 ## Overview
 Our payment system provides secure and efficient transaction processing.
@@ -13,4 +13,10 @@ Our payment system provides secure and efficient transaction processing.
 
 ## Installation
 ```bash
-npm install payment-system
+your-project/
+├── README.md
+├── images/
+│   └── payment-system.png
+├── docs/
+│   └── assets/
+└── src/
