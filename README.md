@@ -1,6 +1,6 @@
 # Payment System
 
-![Payment System Architecture](./payment.jpg)
+![Payment System Architecture](./payment.JPG)
 
 ## Overview
 Our payment system provides secure and efficient transaction processing.
