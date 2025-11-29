@@ -11,6 +11,14 @@ Our payment system provides secure and efficient transaction processing.
 - 📊 Real-time analytics
 - 🔄 Recurring payments
 
+## Tips:
+1. Use **PNG** for diagrams and screenshots
+2. Use **SVG** for scalable graphics
+3. Keep image sizes reasonable (<1MB)
+4. Use descriptive alt text for accessibility
+5. Organize images in an `images/` or `assets/` folder
+
+Choose the method that best fits your project structure!
 ## Installation
 ```bash
 your-project/
@@ -20,3 +28,4 @@ your-project/
 ├── docs/
 │   └── assets/
 └── src/
+
